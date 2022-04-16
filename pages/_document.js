@@ -16,6 +16,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
+          <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
         </Head>
         <body>
           <Main />
