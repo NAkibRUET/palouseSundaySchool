@@ -1,12 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { useEffect, useState } from 'react';
+import { Fab } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 import AdminLayout from '../DashboardLayout';
 import { studentService } from '../../services';
 import { User } from '../../models/UserModel';
 import { ResponseCode } from '../../constants/error-code';
 import {
-  IconButton, 
+  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -16,6 +18,7 @@ import {
   Paper
 } from '@mui/material';
 import { Create } from '@mui/icons-material';
+import { useRouter } from 'next/router';
 
 const columnData = [
   { id: 'count', disablePadding: false, label: '#' },
@@ -24,6 +27,7 @@ const columnData = [
 ];
 
 function TableHeader(props: any) {
+  
   const { order, orderBy } = props;
   return (
     <TableHead style={{ boxShadow: '0px 7px 15px -13px rgba(0,0,0,0.59)' }}>
@@ -35,7 +39,7 @@ function TableHeader(props: any) {
               //numeric={column.numeric ? column.numeric : null}
               padding={column.disablePadding ? 'none' : 'normal'}
               sortDirection={orderBy === column.id ? order : false}>
-                {column.label}
+              {column.label}
               {/* <Tooltip
                 title="Sort"
                 placement={column.numeric ? 'bottom-end' : 'bottom-start'}
@@ -92,6 +96,7 @@ function BasicTable(props: any) {
 
 
 export default function StudentComponent() {
+  const router = useRouter();
   const [studentList, setStudentList] = useState<User[]>([]);
   useEffect(() => {
     studentService.getAll().then(response => {
@@ -107,6 +112,9 @@ export default function StudentComponent() {
     <AdminLayout>
       <div>
         <BasicTable rows={studentList} columnData={columnData} />
+        <Fab color="primary" aria-label="add" style={{position: 'fixed', right:20, bottom: 20}} onClick={()=> router.push('/admin/students/add')}>
+          <AddIcon />
+        </Fab>
       </div>
     </AdminLayout>
   );

@@ -24,8 +24,8 @@ export default function Header() {
 
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-      <Toolbar>
-        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }} onClick={()=> router.push('/admin')} style={{cursor: 'pointer'}}>
+      <Toolbar className="flex justify-between">
+        <Typography variant="h6" noWrap component="div" onClick={()=> router.push('/admin')} style={{cursor: 'pointer'}}>
           Admin Panel
         </Typography>
         <IconButton

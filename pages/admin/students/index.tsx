@@ -1,9 +1,9 @@
 import StudentComponent from "../../../components/Students";
 
-export default function StudentPage(){
-  return(
+export default function StudentPage() {
+  return (
     <>
-      <StudentComponent/>
+      <StudentComponent />
     </>
   )
 }
